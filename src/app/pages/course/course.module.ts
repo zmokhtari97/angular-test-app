@@ -19,6 +19,7 @@ import {MatIconModule} from "@angular/material/icon";
 import {CourseService} from "./shared/service/course.service";
 import {CourseResolverService} from "./shared/service/course-resolver.service";
 import {MatSelectModule} from "@angular/material/select";
+import {SharedModule} from "../../shared/shared.module";
 @NgModule({
   declarations: [
     CourseListComponent,
@@ -45,6 +46,7 @@ import {MatSelectModule} from "@angular/material/select";
         MatIconModule,
         NgTemplateOutlet,
         MatSelectModule,
+        SharedModule,
 
     ],
   providers: [

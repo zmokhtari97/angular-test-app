@@ -1,0 +1,31 @@
+.rating-box {
+  border-radius: 5px;
+  width: min-content;
+  font-size: 50px;
+  color: #ddd;
+  position: relative;
+}
+
+.star {
+  display: flex;
+}
+
+.star.yellow {
+  color: #FFA405;
+}
+
+.rating {
+  height: 100%;
+  overflow: hidden;
+}
+
+.grey {
+  position: absolute;
+  left: 0;
+  top: 0;
+  z-index: -1;
+}
+
+mat-icon {
+  overflow: visible;
+}
