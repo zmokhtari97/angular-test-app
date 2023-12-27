@@ -1,0 +1,97 @@
+<div mat-dialog-title class="list-title">
+  {{ data.action === "edit" ? "Edit Course" : "Add New Course" }}
+</div>
+<form
+  [formGroup]="form"
+  (ngSubmit)="onSubmit()"
+  class="grid grid-cols-2 gap-4 p-4"
+>
+  <mat-form-field class="mb-4 w-full">
+    <mat-label>Title</mat-label>
+    <input matInput type="text" formControlName="title"/>
+    <mat-error *ngIf="fieldIsValid('title', 'required')">
+      <div *ngTemplateOutlet="fieldIsRequired"></div>
+    </mat-error>
+  </mat-form-field>
+
+  <div formGroupName="instructor">
+    <mat-form-field class="mb-4 w-full">
+      <mat-label>Instructor Name</mat-label>
+      <input matInput type="text" formControlName="name"/>
+      <mat-error *ngIf="fieldIsValid('name', 'required')">
+        <div *ngTemplateOutlet="fieldIsRequired"></div>
+      </mat-error>
+    </mat-form-field>
+
+    <mat-form-field class="mb-4 w-full">
+      <mat-label>Instructor Email</mat-label>
+      <input matInput type="text" formControlName="email"/>
+      <mat-error *ngIf="fieldIsValid('email', 'required')">
+        <div *ngTemplateOutlet="fieldIsRequired"></div>
+      </mat-error>
+    </mat-form-field>
+  </div>
+
+  <mat-form-field class="mb-4 w-full">
+    <mat-label>Level</mat-label>
+    <mat-select formControlName="level">
+      <mat-option
+        *ngFor="let item of courseLevels"
+        [value]="item"
+      >
+        {{ item }}
+      </mat-option>
+    </mat-select>
+    <mat-error *ngIf="fieldIsValid('level', 'required')">
+      <div *ngTemplateOutlet="fieldIsRequired"></div>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="mb-4 w-full">
+    <mat-label>Duration</mat-label>
+    <input matInput type="number" formControlName="duration"/>
+    <mat-error *ngIf="fieldIsValid('duration', 'required')">
+      <div *ngTemplateOutlet="fieldIsRequired"></div>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="mb-4 w-full">
+    <mat-label>Price</mat-label>
+    <input matInput type="number" formControlName="price"/>
+    <mat-error *ngIf="fieldIsValid('price', 'required')">
+      <div *ngTemplateOutlet="fieldIsRequired"></div>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-form-field class="mb-4 w-full">
+    <mat-label>Description</mat-label>
+    <textarea
+      matInput
+      cols="20"
+      rows="2"
+      formControlName="description"
+    ></textarea>
+    <mat-error *ngIf="fieldIsValid('description', 'required')">
+      <div *ngTemplateOutlet="fieldIsRequired"></div>
+    </mat-error>
+  </mat-form-field>
+
+  <mat-dialog-actions>
+    <button mat-button [mat-dialog-close]="false" class="cancel-btn">
+      cancel
+    </button>
+    <button
+      mat-button
+      color="primary"
+      type="submit"
+      [disabled]="!form.valid"
+    >
+      {{ data.action === "edit" ? "Update" : "Add" }}
+    </button>
+  </mat-dialog-actions>
+</form>
+
+
+<ng-template #fieldIsRequired>
+  Field is required
+</ng-template>

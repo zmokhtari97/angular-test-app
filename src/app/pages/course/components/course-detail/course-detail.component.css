@@ -1,0 +1,67 @@
+
+.card-section {
+  padding: 16px;
+  border-bottom: 1px solid #ccc;
+}
+.profile-avatar {
+  margin-right: 16px;
+  font-size: 48px;
+}
+
+.tag {
+  background-color: #fee3dc;
+  color: #ed6261;
+  border-radius: 5px;
+  min-width: 100px;
+  min-height: 25px;
+  font-size: 14px;
+  font-weight: 500;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.button-color {
+  background-color: #f3f3fb;
+  border-radius: 5px;
+}
+
+mat-card-content {
+  line-height: 25px;
+  padding: 0 12px;
+}
+
+mat-card-title {
+  font-weight: 700;
+}
+.price-section {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+}
+.off-button{
+  background-color: #6659ef;
+  color:#dad7fa;
+  min-width: 50px;
+  min-height: 15px;
+  font-size: 12px;
+  font-weight: 500
+}
+.add-course-btn{
+  background-color:#3347e6;
+  color: #ffffff;
+  box-shadow: none;
+}
+.buy-btn{
+  border:1px solid #3347e6;
+  color: #3347e6;
+  box-shadow: none;
+}
+ li {
+  display: flex;
+  align-items: center;
+  margin-bottom: 8px;
+  font-size: 14px;
+}

@@ -1,0 +1,40 @@
+<mat-card class="max-w-xs border-0 shadow-sm transition-shadow duration-300 ease-in-out m-0" >
+  <img mat-card-image src="assets/courses/{{course.id % 2}}.jpg">
+
+  <div class="absolute top-32 left-2 gap-1 text-white flex items-center">
+    <div class="rounded-full overflow-hidden w-6 h-6">
+      <img src="https://via.placeholder.com/50" alt="Profile Image" class="w-full h-full">
+    </div>
+    <p class="text-sm font-semibold" [routerLink]="['/course/detail', course.id ]">{{course?.instructor?.name}}</p>
+  </div>
+
+  <div class="absolute top-2 right-4 ">
+    <div class="rounded-full overflow-hidden w-6 h-6">
+      <img src="https://via.placeholder.com/50" alt="Profile Image" class="w-full h-full">
+    </div>
+  </div>
+  <mat-card-content>
+
+    <h5 class="font-semibold mb-2">{{course.title}}</h5>
+
+    <div class="flex space-x-3 mb-2">
+      <div class="rounded-full overflow-hidden w-6 h-6">
+        <img src="https://via.placeholder.com/50" class="w-full h-full">
+      </div>
+      <span class="text-sm ">{{course.level}}</span>
+      <div class="rounded-full overflow-hidden w-6 h-6">
+        <img src="https://via.placeholder.com/50" class="w-full h-full">
+      </div>
+      <span class="text-sm ">{{course.num_students}}</span>
+      <div class="rounded-full overflow-hidden w-6 h-6">
+        <img src="https://via.placeholder.com/50" class="w-full h-full">
+      </div>
+      <span class="text-sm ">{{course.rating}}</span>
+    </div>
+  </mat-card-content>
+  <div class="border-b border-gray-300 mb-2"></div>
+  <mat-card-actions>
+    <span class="text-sm  font-semibold">{{course.price| dollarPrefix}}</span>
+    <button mat-button color="dark-blue" (click)="editCourse()">Edit Course</button>
+  </mat-card-actions>
+</mat-card>
