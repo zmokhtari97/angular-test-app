@@ -48,7 +48,7 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class=""  appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>Duration</mat-label>
     <input matInput formControlName="duration"/>
     <mat-error *ngIf="fieldIsNotValid('duration', 'required')">
@@ -56,12 +56,31 @@
     </mat-error>
   </mat-form-field>
 
-  <mat-form-field class=""  appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>Price</mat-label>
     <input matInput type="number" formControlName="price"/>
     <mat-error *ngIf="fieldIsNotValid('price', 'required')">
       <div *ngTemplateOutlet="fieldIsRequired"></div>
     </mat-error>
+  </mat-form-field>
+
+  <mat-form-field appearance="outline">
+    <mat-label>Tags</mat-label>
+    <mat-chip-list #chipGrid aria-label="Enter tag">
+      <ng-container *ngFor="let tag of courseTags">
+        <mat-chip (removed)="removeTag(tag)">
+          {{tag}}
+          <button matChipRemove [attr.aria-label]="'remove ' + tag">
+            <mat-icon>cancel</mat-icon>
+          </button>
+        </mat-chip>
+      </ng-container>
+    </mat-chip-list>
+    <input placeholder="New Tag..."
+           class="mt-2"
+           [matChipInputFor]="chipGrid"
+           [matChipInputSeparatorKeyCodes]="separatorKeysCodes"
+           (matChipInputTokenEnd)="addTag($event)"/>
   </mat-form-field>
 
   <mat-form-field class="" appearance="outline">

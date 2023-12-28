@@ -3,6 +3,8 @@ import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../shared/service/course.service";
 import {Course} from "../../shared/model/course.model";
+import {MatChipInputEvent} from "@angular/material/chips";
+import {ENTER} from "@angular/cdk/keycodes";
 
 enum CourseLevels {
   BEGINNER = "Beginner",
@@ -17,6 +19,7 @@ enum CourseLevels {
 })
 export class CourseAddComponent {
   courseLevels =["Beginner","Intermediate","Advance"];
+  separatorKeysCodes = [ENTER] as const;
   form = new FormGroup({
     title: new FormControl('', Validators.required),
     instructor: new FormGroup({
@@ -26,9 +29,9 @@ export class CourseAddComponent {
     level: new FormControl('', Validators.required),
     duration: new FormControl("", Validators.required),
     price: new FormControl(0, Validators.required),
-    tags: new FormControl([]),
     description: new FormControl(''),
   });
+  courseTags: string[] = [];
 
   constructor(
     private readonly _courseService: CourseService,
@@ -45,6 +48,7 @@ export class CourseAddComponent {
 
   fillEditForm() {
     let course = this.data.course
+    this.courseTags = course.tags.map((tag) => tag.name);
     this.form.patchValue({
       title: course.title,
       instructor: course.instructor,
@@ -67,7 +71,8 @@ export class CourseAddComponent {
     let newCourse = new Course({
       ...this.form.value,
       num_students: 0,
-      rating: 0
+      rating: 0,
+      tags: this.courseTags
     });
     this._courseService.addData(newCourse).subscribe({
       next: value => {
@@ -77,7 +82,11 @@ export class CourseAddComponent {
   }
 
   updateCourse() {
-    let updatedCourse: Course = new Course({...this.data.course, ...this.form.value})
+    let updatedCourse: Course = new Course({
+      ...this.data.course,
+      ...this.form.value,
+      tags: this.courseTags.map((tag) => ({name: tag, description: ""}))
+    })
     this._courseService.updateData(updatedCourse, this.data.course.id).subscribe({
       next: value => {
         this.dialogRef.close({success: value});
@@ -93,5 +102,20 @@ export class CourseAddComponent {
       }
     }
     return false;
+  }
+
+  addTag(event: MatChipInputEvent): void {
+    const value = (event.value || '').trim();
+    if (value) {
+      this.courseTags.push(value);
+    }
+    event.chipInput!.clear();
+  }
+
+  removeTag(tag: string): void {
+    const index = this.courseTags.indexOf(tag);
+    if (index >= 0) {
+      this.courseTags.splice(index, 1);
+    }
   }
 }

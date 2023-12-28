@@ -4,6 +4,10 @@ import {ActivatedRoute} from "@angular/router";
 import {Course} from "../../shared/model/course.model";
 import {CourseAddComponent} from "../course-add/course-add.component";
 import {MatDialog} from "@angular/material/dialog";
+import {BreadcrumbService} from "../../../../shared/services/breadcrumb.service";
+import {Breadcrumb} from "../../../../shared/model/Breadcrumb";
+
+const BreadCrumbAddress : Breadcrumb[] = [{title: "home", route: "/course/list"}]
 
 @Component({
   selector: 'app-course-detail',
@@ -11,23 +15,26 @@ import {MatDialog} from "@angular/material/dialog";
   styleUrls: ['./course-detail.component.scss']
 })
 export class CourseDetailComponent implements OnInit {
+  course: Course = new Course();
+
   constructor(
     private readonly _dialog: MatDialog,
     private readonly _courseService: CourseService,
     private readonly _activatedRoute: ActivatedRoute,
+    private readonly _breadcrumbService: BreadcrumbService,
     ) {
+    this._breadcrumbService.setAddress(BreadCrumbAddress)
   }
-
-  course: Course = new Course()
 
   ngOnInit() {
     this.getCourseDetail();
   }
 
   getCourseDetail() {
-    let courseID = this._activatedRoute.snapshot.params['id']
+    let courseID = this._activatedRoute.snapshot.params['id'];
     this._courseService.getCourseById(Number(courseID)).subscribe((courseDetail) => {
-      this.course=courseDetail
+      this.course=courseDetail;
+      this._breadcrumbService.addAddress({title: this.course.title, route: "/course/detail/" + courseID})
     })
   }
 

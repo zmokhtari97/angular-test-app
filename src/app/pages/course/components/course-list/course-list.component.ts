@@ -4,6 +4,10 @@ import {Course} from "../../shared/model/course.model";
 import {finalize} from "rxjs/operators";
 import {CourseAddComponent} from "../course-add/course-add.component";
 import {MatDialog} from "@angular/material/dialog";
+import {BreadcrumbService} from "../../../../shared/services/breadcrumb.service";
+import {Breadcrumb} from "../../../../shared/model/Breadcrumb";
+
+const BreadCrumbAddress : Breadcrumb[] = [{title: "home", route: "/course/list"}]
 
 @Component({
   selector: 'app-course-list',
@@ -16,8 +20,10 @@ export class CourseListComponent implements OnInit {
 
   constructor(
     private readonly _dialog: MatDialog,
-    private readonly _courseService: CourseService
+    private readonly _courseService: CourseService,
+    private readonly _breadcrumbService: BreadcrumbService,
   ) {
+    this._breadcrumbService.setAddress(BreadCrumbAddress)
   }
 
   ngOnInit() {

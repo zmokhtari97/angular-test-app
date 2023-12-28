@@ -5,7 +5,7 @@ import {CourseListItemComponent} from "./components/course-list-item/course-list
 import {CourseAddComponent} from "./components/course-add/course-add.component";
 import {CourseDetailComponent} from "./components/course-detail/course-detail.component";
 import {CourseRoutingModule} from "./course-routing.module";
-import {JsonPipe, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {CommonModule, JsonPipe, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
@@ -14,12 +14,13 @@ import {MatInputModule} from "@angular/material/input";
 import {MatDialogModule} from "@angular/material/dialog";
 import {ReactiveFormsModule} from "@angular/forms";
 import {MatProgressSpinnerModule} from "@angular/material/progress-spinner";
-import {CurrencyPipe} from "./shared/pipe/currency.pipe";
 import {MatIconModule} from "@angular/material/icon";
 import {CourseService} from "./shared/service/course.service";
 import {CourseResolverService} from "./shared/service/course-resolver.service";
 import {MatSelectModule} from "@angular/material/select";
 import {SharedModule} from "../../shared/shared.module";
+import {MatChipsModule} from "@angular/material/chips";
+import {MatAutocompleteModule} from "@angular/material/autocomplete";
 @NgModule({
   declarations: [
     CourseListComponent,
@@ -27,13 +28,11 @@ import {SharedModule} from "../../shared/shared.module";
     CourseListItemComponent,
     CourseAddComponent,
     CourseLayoutComponent,
-    CurrencyPipe
 
   ],
     imports: [
         CourseRoutingModule,
-        NgForOf,
-        JsonPipe,
+      CommonModule,
         MatCardModule,
         MatButtonModule,
         MatSlideToggleModule,
@@ -41,13 +40,13 @@ import {SharedModule} from "../../shared/shared.module";
         MatInputModule,
         MatDialogModule,
         ReactiveFormsModule,
-        NgIf,
         MatProgressSpinnerModule,
         MatIconModule,
-        NgTemplateOutlet,
         MatSelectModule,
         SharedModule,
-
+      MatFormFieldModule,
+      MatChipsModule,
+      MatIconModule,
     ],
   providers: [
     CourseResolverService,

@@ -3,18 +3,29 @@ import {RatingComponent} from "./components/rating/rating.component";
 import {MatIconModule} from "@angular/material/icon";
 import { WishListComponent } from './components/wish-list/wish-list.component';
 import {MatButtonModule} from "@angular/material/button";
-import {NgIf} from "@angular/common";
+import {CurrencyPipe} from "./pipe/currency.pipe";
+import {CommonModule} from "@angular/common";
+import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import {RouterLink} from "@angular/router";
 
 @NgModule({
-  declarations: [RatingComponent, WishListComponent],
+  declarations: [
+    RatingComponent,
+    WishListComponent,
+    CurrencyPipe,
+    BreadCrumbComponent
+  ],
   exports: [
     RatingComponent,
-    WishListComponent
+    WishListComponent,
+    CurrencyPipe,
+    BreadCrumbComponent
   ],
   imports: [
+    CommonModule,
     MatIconModule,
     MatButtonModule,
-    NgIf
+    RouterLink,
   ]
 })
 export class SharedModule {}

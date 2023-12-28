@@ -9,13 +9,19 @@ button.small {
   border: none;
   background: #fff;
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
+}
 
+mat-icon {
+  width: 20px;
+  height: 20px;
+  font-size: 20px;
+  margin-top: 2px;
+  color: #666;
+}
+
+button.normal {
   mat-icon {
-    width: 20px;
-    height: 20px;
-    font-size: 20px;
-    margin-top: 2px;
-    color: #666;
+    margin-bottom: 4px;
   }
 }
 
