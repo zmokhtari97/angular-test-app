@@ -1,22 +1,23 @@
 import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CourseService} from "../../shared/service/course.service";
 import {Course} from "../../shared/model/course.model";
-import {finalize} from "rxjs/operators";
+import {takeUntil} from "rxjs/operators";
 import {CourseAddComponent} from "../course-add/course-add.component";
 import {MatDialog} from "@angular/material/dialog";
 import {BreadcrumbService} from "../../../../shared/services/breadcrumb.service";
 import {Breadcrumb} from "../../../../shared/model/Breadcrumb";
+import {Subject} from "rxjs";
 
-const BreadCrumbAddress : Breadcrumb[] = [{title: "home", route: "/course/list"}]
+const BreadCrumbAddress: Breadcrumb[] = [{title: "home", route: "/course/list"}]
 
 @Component({
   selector: 'app-course-list',
   templateUrl: './course-list.component.html',
   styleUrls: ['./course-list.component.css']
 })
-export class CourseListComponent implements OnInit {
+export class CourseListComponent implements OnInit, OnDestroy {
   coursesList: Course[] = [];
-  dataLoading = true;
+  private _unsubscribe = new Subject();
 
   constructor(
     private readonly _dialog: MatDialog,
@@ -32,10 +33,10 @@ export class CourseListComponent implements OnInit {
 
   getCourseList() {
     this._courseService.getCourses()
-      .pipe(finalize(() => this.dataLoading = false))
+      .pipe(takeUntil(this._unsubscribe))
       .subscribe((data) => {
-      this.coursesList = data
-    })
+        this.coursesList = data
+      })
   }
 
   onEvent(event: boolean): void {
@@ -43,7 +44,7 @@ export class CourseListComponent implements OnInit {
   }
 
   addNewCourse() {
-    let dialogRef= this._dialog.open(CourseAddComponent, {
+    let dialogRef = this._dialog.open(CourseAddComponent, {
       width: '70%',
       data: {
         action: 'add'
@@ -52,8 +53,13 @@ export class CourseListComponent implements OnInit {
     dialogRef.afterClosed().subscribe(({success}) => {
       if (success) this.getCourseList();
       else {
-        //  notification
+        //notification
       }
     });
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
+    this._unsubscribe.complete();
   }
 }

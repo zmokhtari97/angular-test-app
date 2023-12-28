@@ -12,10 +12,11 @@ export class CourseListItemComponent {
   @Input() course: Course = new Course();
   @Output() event = new EventEmitter<boolean>();
 
-  constructor(private readonly _dialog: MatDialog) {}
+  constructor(private readonly _dialog: MatDialog) {
+  }
 
   editCourse() {
-   let dialogRef= this._dialog.open(CourseAddComponent, {
+    let dialogRef = this._dialog.open(CourseAddComponent, {
       width: '70%',
       data: {
         action: 'edit',
@@ -23,9 +24,9 @@ export class CourseListItemComponent {
       },
     })
     dialogRef.afterClosed().subscribe(({success}) => {
-      if (success) this.event.emit(success);
+      if (success) this.event.emit(success)
       else {
-      //  notification
+        //notification
       }
     });
   }

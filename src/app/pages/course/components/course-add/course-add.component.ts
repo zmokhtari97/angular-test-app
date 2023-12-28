@@ -1,25 +1,23 @@
-import {Component, Inject} from '@angular/core';
+import {Component, Inject, OnDestroy, OnInit} from '@angular/core';
 import {MAT_DIALOG_DATA, MatDialogRef} from "@angular/material/dialog";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {CourseService} from "../../shared/service/course.service";
 import {Course} from "../../shared/model/course.model";
 import {MatChipInputEvent} from "@angular/material/chips";
 import {ENTER} from "@angular/cdk/keycodes";
-
-enum CourseLevels {
-  BEGINNER = "Beginner",
-  INTERMEDIATE = "Intermediate",
-  ADVANCE = "Advance"
-}
+import {Subject} from "rxjs";
+import {takeUntil} from "rxjs/operators";
 
 @Component({
   selector: 'app-course-add',
   templateUrl: './course-add.component.html',
   styleUrls: ['./course-add.component.css']
 })
-export class CourseAddComponent {
-  courseLevels =["Beginner","Intermediate","Advance"];
+export class CourseAddComponent implements OnInit, OnDestroy {
+  courseLevels = ["Beginner", "Intermediate", "Advance"];
   separatorKeysCodes = [ENTER] as const;
+  private _unsubscribe = new Subject();
+
   form = new FormGroup({
     title: new FormControl('', Validators.required),
     instructor: new FormGroup({
@@ -36,7 +34,7 @@ export class CourseAddComponent {
   constructor(
     private readonly _courseService: CourseService,
     private dialogRef: MatDialogRef<CourseAddComponent>,
-    @Inject(MAT_DIALOG_DATA) public data: {course: Course, action: "add" | "edit"},
+    @Inject(MAT_DIALOG_DATA) public data: { course: Course, action: "add" | "edit" },
   ) {
   }
 
@@ -74,7 +72,7 @@ export class CourseAddComponent {
       rating: 0,
       tags: this.courseTags
     });
-    this._courseService.addData(newCourse).subscribe({
+    this._courseService.addData(newCourse).pipe(takeUntil(this._unsubscribe)).subscribe({
       next: value => {
         this.dialogRef.close({success: value});
       }
@@ -87,7 +85,7 @@ export class CourseAddComponent {
       ...this.form.value,
       tags: this.courseTags.map((tag) => ({name: tag, description: ""}))
     })
-    this._courseService.updateData(updatedCourse, this.data.course.id).subscribe({
+    this._courseService.updateData(updatedCourse, this.data.course.id).pipe(takeUntil(this._unsubscribe)).subscribe({
       next: value => {
         this.dialogRef.close({success: value});
       }
@@ -117,5 +115,10 @@ export class CourseAddComponent {
     if (index >= 0) {
       this.courseTags.splice(index, 1);
     }
+  }
+
+  ngOnDestroy(): void {
+    this._unsubscribe.next();
+    this._unsubscribe.complete();
   }
 }

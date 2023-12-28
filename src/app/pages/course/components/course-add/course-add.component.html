@@ -7,7 +7,7 @@
   (ngSubmit)="onSubmit()"
   class="d-flex flex-column"
 >
-  <mat-form-field class="" appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>Title</mat-label>
     <input matInput type="text" formControlName="title"/>
     <mat-error *ngIf="fieldIsNotValid('title', 'required')">
@@ -16,7 +16,7 @@
   </mat-form-field>
 
   <div formGroupName="instructor" class="d-flex gap-4 justify-content-between">
-    <mat-form-field class="w-100"  appearance="outline">
+    <mat-form-field class="w-100" appearance="outline">
       <mat-label>Instructor Name</mat-label>
       <input matInput type="text" formControlName="name"/>
       <mat-error *ngIf="fieldIsNotValid('name', 'required')">
@@ -33,7 +33,7 @@
     </mat-form-field>
   </div>
 
-  <mat-form-field class=""  appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>Level</mat-label>
     <mat-select formControlName="level">
       <mat-option
@@ -83,7 +83,7 @@
            (matChipInputTokenEnd)="addTag($event)"/>
   </mat-form-field>
 
-  <mat-form-field class="" appearance="outline">
+  <mat-form-field appearance="outline">
     <mat-label>Description</mat-label>
     <textarea
       matInput
@@ -93,7 +93,7 @@
     ></textarea>
   </mat-form-field>
 
-  <mat-dialog-actions>
+  <mat-dialog-actions class="ms-auto">
     <button mat-button [mat-dialog-close]="false" class="cancel-btn">
       cancel
     </button>

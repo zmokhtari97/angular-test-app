@@ -5,7 +5,7 @@ import {CourseListItemComponent} from "./components/course-list-item/course-list
 import {CourseAddComponent} from "./components/course-add/course-add.component";
 import {CourseDetailComponent} from "./components/course-detail/course-detail.component";
 import {CourseRoutingModule} from "./course-routing.module";
-import {CommonModule, JsonPipe, NgForOf, NgIf, NgTemplateOutlet} from "@angular/common";
+import {CommonModule} from "@angular/common";
 import {MatCardModule} from "@angular/material/card";
 import {MatButtonModule} from "@angular/material/button";
 import {MatSlideToggleModule} from "@angular/material/slide-toggle";
@@ -20,7 +20,23 @@ import {CourseResolverService} from "./shared/service/course-resolver.service";
 import {MatSelectModule} from "@angular/material/select";
 import {SharedModule} from "../../shared/shared.module";
 import {MatChipsModule} from "@angular/material/chips";
-import {MatAutocompleteModule} from "@angular/material/autocomplete";
+
+const MAT_MODULES: any[] = [MatCardModule,
+  MatButtonModule,
+  MatSlideToggleModule,
+  MatFormFieldModule,
+  MatInputModule,
+  MatDialogModule,
+  ReactiveFormsModule,
+  MatProgressSpinnerModule,
+  MatIconModule,
+  MatSelectModule,
+  SharedModule,
+  MatFormFieldModule,
+  MatChipsModule,
+  MatIconModule
+]
+
 @NgModule({
   declarations: [
     CourseListComponent,
@@ -30,27 +46,15 @@ import {MatAutocompleteModule} from "@angular/material/autocomplete";
     CourseLayoutComponent,
 
   ],
-    imports: [
-        CourseRoutingModule,
-      CommonModule,
-        MatCardModule,
-        MatButtonModule,
-        MatSlideToggleModule,
-        MatFormFieldModule,
-        MatInputModule,
-        MatDialogModule,
-        ReactiveFormsModule,
-        MatProgressSpinnerModule,
-        MatIconModule,
-        MatSelectModule,
-        SharedModule,
-      MatFormFieldModule,
-      MatChipsModule,
-      MatIconModule,
-    ],
+  imports: [
+    CourseRoutingModule,
+    CommonModule,
+    ...MAT_MODULES
+
+  ],
   providers: [
     CourseResolverService,
-    CourseService
+    CourseService,
   ],
 })
 export class CourseModule {

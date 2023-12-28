@@ -2,3 +2,8 @@ h3 {
   font-weight: 700;
   margin: 0;
 }
+
+.add-btn {
+  background-color: var(--primary-color);
+  color: var(--main-color);
+}

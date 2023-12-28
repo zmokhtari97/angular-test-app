@@ -1,10 +1,10 @@
 <div class="d-flex align-items-center justify-content-between mb-4">
   <h3>Programming Language</h3>
-  <button mat-raised-button color="primary" (click)="addNewCourse()">Add New</button>
+  <button mat-raised-button class="add-btn" (click)="addNewCourse()">Add New</button>
 </div>
 
 <div class="row pt-2">
   <div class="col-md-6 col-lg-4 mb-3" *ngFor="let course of coursesList">
-      <app-course-list-item (event)="onEvent($event)" [course]="course"></app-course-list-item>
+    <app-course-list-item (event)="onEvent($event)" [course]="course"></app-course-list-item>
   </div>
 </div>

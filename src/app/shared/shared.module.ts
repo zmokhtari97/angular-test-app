@@ -1,11 +1,11 @@
 import {NgModule} from "@angular/core";
 import {RatingComponent} from "./components/rating/rating.component";
 import {MatIconModule} from "@angular/material/icon";
-import { WishListComponent } from './components/wish-list/wish-list.component';
+import {WishListComponent} from './components/wish-list/wish-list.component';
 import {MatButtonModule} from "@angular/material/button";
 import {CurrencyPipe} from "./pipe/currency.pipe";
 import {CommonModule} from "@angular/common";
-import { BreadCrumbComponent } from './components/bread-crumb/bread-crumb.component';
+import {BreadcrumbComponent} from './components/breadcrumb/breadcrumb.component';
 import {RouterLink} from "@angular/router";
 
 @NgModule({
@@ -13,13 +13,13 @@ import {RouterLink} from "@angular/router";
     RatingComponent,
     WishListComponent,
     CurrencyPipe,
-    BreadCrumbComponent
+    BreadcrumbComponent
   ],
   exports: [
     RatingComponent,
     WishListComponent,
     CurrencyPipe,
-    BreadCrumbComponent
+    BreadcrumbComponent
   ],
   imports: [
     CommonModule,
@@ -28,4 +28,5 @@ import {RouterLink} from "@angular/router";
     RouterLink,
   ]
 })
-export class SharedModule {}
+export class SharedModule {
+}

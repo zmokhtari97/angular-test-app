@@ -7,7 +7,7 @@ button.small {
   padding: 0;
   border-radius: 20px;
   border: none;
-  background: #fff;
+  background: var(--main-color);
   box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 }
 
@@ -27,11 +27,11 @@ button.normal {
 
 button {
   &.active {
-    background-color: #FFA405;
-    color: #fff;
+    background-color: var(--secondary-color);
+    color: var(--main-color);
 
     mat-icon {
-      color: #fff;
+      color: var(--main-color);
     }
   }
 }

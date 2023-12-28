@@ -4,10 +4,10 @@
       <app-wish-list></app-wish-list>
     </div>
     <img mat-card-image class="course-image"
-         src="assets/courses/{{course.id % 2}}.jpg">
+         src="assets/courses/{{course.id % 5}}.jpg">
     <div class="shadow"></div>
     <div class="instructor">
-      <img src="https://via.placeholder.com/50" alt="Profile Image" class="">
+      <img src="assets/people/{{course.id % 5}}.jpg">
       <div class="text-white">{{course.instructor.name}}</div>
     </div>
   </div>
@@ -32,15 +32,15 @@
         <span class="ms-2">{{course.rating}}</span></div>
     </div>
   </mat-card-content>
-    <div class="hr"></div>
-    <mat-card-actions>
-      <div class="d-flex align-items-center justify-content-between px-2 mr-20">
-        <span class="price">${{course.price| currency}}</span>
-        <button class="edit-course-button" mat-button color="primary" (click)="editCourse()">
-          <mat-icon>edit</mat-icon>
-          Edit Course
-        </button>
-      </div>
+  <div class="hr"></div>
+  <mat-card-actions>
+    <div class="d-flex align-items-center justify-content-between px-2 mr-20">
+      <span class="price">${{course.price| currency}}</span>
+      <button class="edit-course-button" mat-button (click)="editCourse()">
+        <mat-icon>edit</mat-icon>
+        Edit Course
+      </button>
+    </div>
 
-    </mat-card-actions>
+  </mat-card-actions>
 </mat-card>

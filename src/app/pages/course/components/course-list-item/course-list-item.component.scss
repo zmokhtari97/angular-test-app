@@ -35,7 +35,7 @@
   left: -16px;
   right: -16px;
   bottom: 0;
-  background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+  background-image: linear-gradient(to top, rgba(0, 0, 0, 1), rgba(0, 0, 0, 0));
 }
 
 .course-image {
@@ -50,7 +50,7 @@
   cursor: pointer;
 }
 
-.icon-container{
+.icon-container {
   width: 30px;
   height: 30px;
   border-radius: 30px;
@@ -71,7 +71,7 @@
     justify-content: center;
 
     &.yellow {
-      color: #FFA405;
+      color: var(--secondary-color);
     }
 
     mat-icon {
@@ -98,6 +98,8 @@
 }
 
 .edit-course-button {
+  color: var(--primary-color);
+
   mat-icon {
     width: 20px;
     height: 20px;

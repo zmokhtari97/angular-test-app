@@ -1,0 +1,10 @@
+<div class="d-flex align-items-center">
+  <div class="route" *ngFor="let route of (breadcrumbService.getRoute() | async); let i=index">
+    <div
+      class="title"
+      [routerLink]="route.route"
+      [class.no-link]="(breadcrumbService.getRoute() | async)?.length == (i + 1)"
+    >{{route.title}}</div>
+    <span> > </span>
+  </div>
+</div>

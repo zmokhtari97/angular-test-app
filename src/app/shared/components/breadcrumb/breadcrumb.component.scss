@@ -1,0 +1,28 @@
+.route {
+  font-size: 14px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+
+  .title {
+    color: var(--primary-color);
+    cursor: pointer;
+
+    &.no-link {
+      color: inherit;
+    }
+  }
+
+  span {
+    margin: 0 10px;
+    font-size: 15px;
+    opacity: 0.5;
+  }
+
+  &:last-child {
+    span {
+      display: none;
+    }
+  }
+}
+

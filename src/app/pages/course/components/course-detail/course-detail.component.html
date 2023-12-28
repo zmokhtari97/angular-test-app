@@ -15,21 +15,26 @@
       <div class="d-flex flex-wrap align-items-center gap-5">
         <div class="short-info">
           <div class="label">Last Updates</div>
-          <div class="value">Aug 2021</div></div>
+          <div class="value">Aug 2021</div>
+        </div>
         <div class="short-info">
           <div class="label">Level</div>
-          <div class="value">{{course.level}}</div></div>
+          <div class="value">{{course.level}}</div>
+        </div>
         <div class="short-info">
           <div class="label">Students</div>
-          <div class="value">{{course.num_students}}</div></div>
+          <div class="value">{{course.num_students}}</div>
+        </div>
         <div class="short-info">
           <div class="label">Language</div>
-          <div class="value">English</div></div>
+          <div class="value">English</div>
+        </div>
       </div>
 
       <div class="d-flex gap-2">
         <app-wish-list type="normal"></app-wish-list>
-        <button mat-raised-button class="">
+        <button mat-raised-button>
+          <mat-icon class="me-2">share</mat-icon>
           Share
         </button>
       </div>
@@ -37,7 +42,7 @@
 
 
     <div class="my-4">
-      <img class="course-image" src="assets/courses/{{course.id % 2}}.jpg" alt="Sample Image">
+      <img class="course-image" src="assets/courses/{{course.id % 5}}.jpg">
     </div>
     <div class="d-flex flex-column gap-3">
       <div class="card">
@@ -81,38 +86,44 @@
           </div>
 
           <div class="d-flex flex-column gap-2 mt-4">
-            <button mat-raised-button class="edit-course-button" (click)="editCourse()">Edit Courses</button>
-            <button mat-raised-button class="buy-course-button">Buy Now</button>
+            <button mat-raised-button class="edit-course-button" (click)="editCourse()">
+              <mat-icon class="edit-icon">edit</mat-icon>
+              Edit Courses
+            </button>
+            <button mat-raised-button class="buy-course-button">
+              <mat-icon class="edit-icon">add_shopping_cart</mat-icon>
+              Buy Now
+            </button>
           </div>
         </div>
 
         <div class="hr"></div>
 
         <div class="section">
-          <h6 class="fw-bolder">This Course Includes</h6>
+          <h6 class="fw-bolder">This Course includes</h6>
           <ul class="course-info-list">
             <li>
-              <mat-icon>check</mat-icon>
+              <mat-icon>play_circle_outline</mat-icon>
               {{course.duration}} on demand video
             </li>
             <li>
-              <mat-icon>check</mat-icon>
+              <mat-icon>library_books</mat-icon>
               1 article
             </li>
             <li>
-              <mat-icon>check</mat-icon>
+              <mat-icon>save_alt</mat-icon>
               50 download resources
             </li>
             <li>
-              <mat-icon>check</mat-icon>
+              <mat-icon>access_time</mat-icon>
               Full Lifetime access
             </li>
             <li>
-              <mat-icon>check</mat-icon>
+              <mat-icon>phone_android</mat-icon>
               Access on mobile and TV
             </li>
             <li>
-              <mat-icon>person</mat-icon>
+              <mat-icon>verified_user</mat-icon>
               Certificate of completion
             </li>
           </ul>
@@ -125,7 +136,7 @@
 
           <div class="instructor">
             <div class="profile">
-              <img src="assets/courses/{{course.id % 2}}.jpg" alt="">
+              <img src="assets/people/{{course.id % 5}}.jpg">
               <div class="bio">
                 <div class="name">{{course.instructor.name}}</div>
                 <div class="job">{{course.instructor.email}}</div>
