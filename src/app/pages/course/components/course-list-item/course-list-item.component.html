@@ -1,40 +1,46 @@
-<mat-card class="max-w-xs border-0 shadow-sm transition-shadow duration-300 ease-in-out m-0" >
-  <img mat-card-image src="assets/courses/{{course.id % 2}}.jpg">
-
-  <div class="absolute top-32 left-2 gap-1 text-white flex items-center">
-    <div class="rounded-full overflow-hidden w-6 h-6">
-      <img src="https://via.placeholder.com/50" alt="Profile Image" class="w-full h-full">
+<mat-card>
+  <div class="position-relative">
+    <div class="wish-list">
+      <app-wish-list></app-wish-list>
     </div>
-    <p class="text-sm font-semibold" [routerLink]="['/course/detail', course.id ]">{{course.instructor.name}}</p>
-  </div>
-
-  <div class="absolute top-2 right-4 ">
-    <div class="rounded-full overflow-hidden w-6 h-6">
-      <img src="https://via.placeholder.com/50" alt="Profile Image" class="w-full h-full">
+    <img mat-card-image class="course-image"
+         src="assets/courses/{{course.id % 2}}.jpg">
+    <div class="shadow"></div>
+    <div class="instructor">
+      <img src="https://via.placeholder.com/50" alt="Profile Image" class="">
+      <div class="text-white">{{course.instructor.name}}</div>
     </div>
   </div>
   <mat-card-content>
-
-    <h5 class="font-semibold mb-2">{{course.title}}</h5>
-
-    <div class="flex space-x-3 mb-2">
-      <div class="rounded-full overflow-hidden w-6 h-6">
-        <img src="https://via.placeholder.com/50" class="w-full h-full">
+    <h6 class="course-name" [routerLink]="['/course/detail', course.id ]">{{course.title}}</h6>
+    <div class="d-flex align-items-center gap-5">
+      <div class="stat">
+        <div class="icon">
+          <mat-icon>card_travel</mat-icon>
+        </div>
+        <span class="ms-2">{{course.level}}</span></div>
+      <div class="stat">
+        <div class="icon">
+          <mat-icon>people_outline</mat-icon>
+        </div>
+        <span class="ms-2">{{course.num_students}}</span>
       </div>
-      <span class="text-sm ">{{course.level}}</span>
-      <div class="rounded-full overflow-hidden w-6 h-6">
-        <img src="https://via.placeholder.com/50" class="w-full h-full">
-      </div>
-      <span class="text-sm ">{{course.num_students}}</span>
-      <div class="rounded-full overflow-hidden w-6 h-6">
-        <img src="https://via.placeholder.com/50" class="w-full h-full">
-      </div>
-      <span class="text-sm ">{{course.rating}}</span>
+      <div class="stat">
+        <div class="icon yellow">
+          <mat-icon>star</mat-icon>
+        </div>
+        <span class="ms-2">{{course.rating}}</span></div>
     </div>
   </mat-card-content>
-  <div class="border-b border-gray-300 mb-2"></div>
-  <mat-card-actions>
-    <span class="text-sm  font-semibold">{{course.price| dollarPrefix}}</span>
-    <button mat-button color="dark-blue" (click)="editCourse()">Edit Course</button>
-  </mat-card-actions>
+    <div class="hr"></div>
+    <mat-card-actions>
+      <div class="d-flex align-items-center justify-content-between px-2 mr-20">
+        <span class="price">${{course.price| currency}}</span>
+        <button class="edit-course-button" mat-button color="primary" (click)="editCourse()">
+          <mat-icon>edit</mat-icon>
+          Edit Course
+        </button>
+      </div>
+
+    </mat-card-actions>
 </mat-card>

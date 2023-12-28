@@ -1,0 +1,10 @@
+<button mat-raised-button class="normal" [class.active]="isActive" *ngIf="type == 'normal'" (click)="isActive = !isActive">
+  <mat-icon *ngIf="isActive">favorite</mat-icon>
+  <mat-icon *ngIf="!isActive">favorite_border</mat-icon>
+  Wish List
+</button>
+
+<button class="small" [class.active]="isActive" *ngIf="type == 'small'" (click)="isActive = !isActive">
+  <mat-icon *ngIf="isActive">favorite</mat-icon>
+  <mat-icon *ngIf="!isActive">favorite_border</mat-icon>
+</button>

@@ -2,7 +2,7 @@ import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {BehaviorSubject, Observable, of} from 'rxjs';
 import {Course} from "../model/course.model";
-import {catchError} from "rxjs/operators";
+import {catchError, delay} from "rxjs/operators";
 
 @Injectable()
 export class CourseService {
@@ -23,19 +23,24 @@ export class CourseService {
 
   getCourses(): Observable<any> {
     return of(this.data);
+    // return of(this.data).pipe(delay(3000));
   }
 
-  addData(newCourse: Course) {
+  addData(newCourse: Course): Observable<boolean> {
+    newCourse.id = this.generateNewID();
     this.data.push(newCourse);
+    return of(true);
   }
 
-  editData(updatedCourse: any, courseID: number): Observable<boolean> {
+  updateData(updatedCourse: Course, courseID: number): Observable<boolean> {
     const index = this.data.findIndex(course => course.id === courseID);
-    if (index != -1) {
-      this.data[index] = updatedCourse;
-      return of(true);
-    }
+    this.data[index] = updatedCourse;
+    // return of(true).pipe(delay(3000));
     return of(true);
+  }
+
+  generateNewID() {
+    return this.data[this.data.length - 1].id + 1;
   }
 
   getCourseById(id: number): Observable<Course> {

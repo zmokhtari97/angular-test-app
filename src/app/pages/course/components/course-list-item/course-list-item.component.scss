@@ -1,0 +1,110 @@
+.mat-card {
+  padding-top: 0;
+  box-shadow: rgba(149, 157, 165, 0.2) 0 8px 24px;
+}
+
+.wish-list {
+  position: absolute;
+  right: 0;
+  top: 16px;
+}
+
+.instructor {
+  position: absolute;
+  bottom: 12px;
+  left: 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+
+  div {
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  img {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+  }
+}
+
+.shadow {
+  position: absolute;
+  top: 90px;
+  left: -16px;
+  right: -16px;
+  bottom: 0;
+  background-image: linear-gradient(to top, rgba(0,0,0,1), rgba(0,0,0,0));
+}
+
+.course-image {
+  height: 200px;
+  object-fit: cover;
+  border-radius: 4px 4px 0 0;
+}
+
+.course-name {
+  font-weight: 700;
+  margin-bottom: 0.75rem;
+  cursor: pointer;
+}
+
+.icon-container{
+  width: 30px;
+  height: 30px;
+  border-radius: 30px;
+}
+
+.stat {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  .icon {
+    width: 30px;
+    height: 30px;
+    border-radius: 30px;
+    border: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    &.yellow {
+      color: #FFA405;
+    }
+
+    mat-icon {
+      width: 20px;
+      height: 20px;
+      font-size: 20px;
+    }
+  }
+
+  span {
+    font-size: 12px;
+    font-weight: 500;
+  }
+}
+
+.hr {
+  margin: 0 -16px;
+  border: 1px solid #eee;
+}
+
+.price {
+  font-size: 16px;
+  font-weight: 700;
+}
+
+.edit-course-button {
+  mat-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 20px;
+  }
+}
+
+.mr-20 {
+  margin-right: -20px;
+}
