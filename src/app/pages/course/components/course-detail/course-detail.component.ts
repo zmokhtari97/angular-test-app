@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CourseService} from "../../shared/service/course.service";
 import {ActivatedRoute} from "@angular/router";
 import {Course} from "../../shared/model/course.model";
@@ -23,7 +23,7 @@ export class CourseDetailComponent implements OnInit {
     private readonly _activatedRoute: ActivatedRoute,
     private readonly _breadcrumbService: BreadcrumbService,
     ) {
-    this._breadcrumbService.setAddress(BreadCrumbAddress)
+    this._breadcrumbService.setRoute(BreadCrumbAddress)
   }
 
   ngOnInit() {
@@ -34,7 +34,7 @@ export class CourseDetailComponent implements OnInit {
     let courseID = this._activatedRoute.snapshot.params['id'];
     this._courseService.getCourseById(Number(courseID)).subscribe((courseDetail) => {
       this.course=courseDetail;
-      this._breadcrumbService.addAddress({title: this.course.title, route: "/course/detail/" + courseID})
+      this._breadcrumbService.addRoute({title: this.course.title, route: "/course/detail/" + courseID})
     })
   }
 
@@ -53,5 +53,4 @@ export class CourseDetailComponent implements OnInit {
       }
     });
   }
-
 }

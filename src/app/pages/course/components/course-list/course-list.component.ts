@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnDestroy, OnInit} from '@angular/core';
 import {CourseService} from "../../shared/service/course.service";
 import {Course} from "../../shared/model/course.model";
 import {finalize} from "rxjs/operators";
@@ -23,7 +23,7 @@ export class CourseListComponent implements OnInit {
     private readonly _courseService: CourseService,
     private readonly _breadcrumbService: BreadcrumbService,
   ) {
-    this._breadcrumbService.setAddress(BreadCrumbAddress)
+    this._breadcrumbService.setRoute(BreadCrumbAddress)
   }
 
   ngOnInit() {

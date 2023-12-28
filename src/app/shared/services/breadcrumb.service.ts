@@ -6,19 +6,23 @@ import {Breadcrumb} from "../model/Breadcrumb";
   providedIn: "root"
 })
 export class BreadcrumbService {
-  private routes: BehaviorSubject<Breadcrumb[]> = new BehaviorSubject<Breadcrumb[]>([])
+  private routes: BehaviorSubject<Breadcrumb[]> = new BehaviorSubject<Breadcrumb[]>([]);
 
-  setAddress(routes: Breadcrumb[]) {
+  setRoute(routes: Breadcrumb[]) {
     this.routes.next(routes)
   }
 
-  addAddress(route: Breadcrumb) {
-    let routes = this.routes.value;
+  addRoute(route: Breadcrumb) {
+    let routes = [...this.routes.getValue()];
     routes.push(route);
     this.routes.next(routes);
   }
 
-  getAddress() {
+  getRoute() {
     return this.routes.asObservable();
+  }
+
+  clear() {
+    this.routes.next([]);
   }
 }

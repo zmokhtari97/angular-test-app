@@ -1,5 +1,5 @@
 <div class="address">
-  <div class="route" *ngFor="let route of (breadcrumbService.getAddress() | async)" [routerLink]="route.route">
+  <div class="route" *ngFor="let route of (breadcrumbService.getRoute() | async)" [routerLink]="route.route">
     {{route.title}}
   </div>
 </div>
